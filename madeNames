@@ -1,0 +1,92 @@
+○ 메인 메소드가 포함될 클래스
+class Main
+{
+final int RENT_BOOKS = 5;		// 대여 가능한 책의 권수: 5권
+final int RENT_DAYS = 14;		// 대출 기간: 14일
+final int LATE_FEE = 300;			// 1일당 연체료: 300원
+
+public static void main(String[] args)
+{
+	Hashtable<String, Member> memList = new Hashtable<String, Member>();
+		// String id 를 key 값으로 받는 Hashtable
+	Hashtable<String, Book> bookList = new Hashtable<String, Book>();
+		// String title 을 key 값으로 받는 Hashtable
+	ArrayList<RentalInfo> rentList = new ArrayList<RentalInfo>();
+	ArrayList<Wish> wishList = new ArrayList<Wish>();
+}
+    }
+
+
+○ 주요 클래스
+■ 거스름돈 클래스 : 100원, 500원, 1,000원, 5,000원, 10,000원, 총 수익
+class Money
+{
+	int m_man;		// 10,000원 갯수
+	int m_5cheon;		// 5,000원 갯수
+int m_cheon;		// 1,000원 갯수
+int m_5baek;		// 500원 갯수
+int m_baek;		// 100원 갯수
+int m_tot;		// 총 수익(누적합)
+    }
+
+
+
+○ VO 클래스
+■ 책 VO클래스 : 도서명, 저자명, 출판사,  출판년도, 분류번호(예: 가-15-20) , 카테고리(예: 문학, 에세이...), 도서관 입고일자, 현재 대출 여부
+
+class Book				// 책 VO 클래스
+{
+	String title;			// 도서명
+      String author;			// 저자명
+      String publisher;		// 출판사
+      String pubYear;        		// 출판년도
+      String codeNumber;  		// 분류번호
+      String category;          		// 카테고리
+      Calendar storedDate;		// 도서관 입고일자
+	boolean rental=true;	 	// 현재 대출 여부 (true : 대출 가능  / false : 대출 중)	
+}	
+
+
+■ 회원 VO클래스 : id, pw, 이름, 주민등록번호, 대출 중인 권 수,  연체여부
+
+class Member			// 회원 VO 클래스
+{
+	String id;			// 아이디
+	String pw;			// 비밀번호
+	String name;			// 이름
+	String ssn;			// 주민등록번호  
+	int rentalBook=0;		// 대출 중인 책 수
+	boolean overdue=false;	// 연체 여부 (true : 연체  / false : 연체X)
+}
+
+
+■ 대출 정보 VO클래스 : 대출일자, 반납일자, 대출도서, 대출회원, 연체료
+class RentalInfo
+{
+	Calendar rentalDate;				// 대출한 일자
+	Calendar returnDate;				// 반납된 일자
+	Book rBook;					// 대출도서
+	Member rMem;				// 대출회원
+	int lateFee=0;					// 연체료
+}
+
+■ 희망도서 VO클래스 : 도서명, 저자명, 신청일자, 신청상태
+class Wish
+{
+	String wTitle;			//도서명
+	String wAuthor;		//저자명
+	Calendar reqDate;		//신청일자
+	int request=1;			//신청상태(1:신청완료, 2:입고완료, 3:신청거부)
+}
+
+
+
+
+■ 인터페이스 : 로그인 / 서비스선택(Admin/User 에 따라 재정의) / 신규 입고 도서 목록 조회
+Interface BookSystem
+{
+	public void login();		// 로그인 
+	public void menuDisp();	// 메뉴 화면
+	public void menuSelect();	// 메뉴 선택
+	public void menuRun();	// 메뉴 실행
+}
