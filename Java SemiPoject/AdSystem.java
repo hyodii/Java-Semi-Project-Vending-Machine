@@ -7,7 +7,7 @@ import java.util.Enumeration;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-//  AdSystemÅ¬·¡½º ¸Ş¼Òµå ÃëÇÕ ¿Ï·á~!
+//  AdSystemí´ë˜ìŠ¤ ë©”ì†Œë“œ ì·¨í•© ì™„ë£Œ~!
 
 class AdSystem extends LibCommon
 {
@@ -16,10 +16,10 @@ class AdSystem extends LibCommon
 	private static final String ADMIN_ID = "admin";
 	private static final String ADMIN_PW = "1234";
 	
-	static String con;		//-- À¯Àú ÀÔ·Â ÄÁÆ®·Ñ °ª
+	static String con;		//-- ìœ ì € ì…ë ¥ ì»¨íŠ¸ë¡¤ ê°’
 
 
-	// °ü¸®ÀÚ ¸Ş´º ½ÇÇà
+	// ê´€ë¦¬ì ë©”ë‰´ ì‹¤í–‰
 	static void onSystem() throws IOException
 	{	
 		while(!login());
@@ -33,21 +33,21 @@ class AdSystem extends LibCommon
 	}
 
 
-	// °ü¸®ÀÚ ¸Ş´º µğ½ºÇÃ·¹ÀÌ
+	// ê´€ë¦¬ì ë©”ë‰´ ë””ìŠ¤í”Œë ˆì´
 	static void menuDisp()
 	{
 		System.out.println();
-		System.out.println("<< °ü¸®ÀÚ ¼­ºñ½º ¼±ÅÃ >>");
-		System.out.println("1. µµ¼­ ´ëÃâ ÇöÈ²");
-		System.out.println("2. µµ¼­ °ü¸®");
-		System.out.println("3. È¸¿øÁ¤º¸ Á¶È¸ ¹× »èÁ¦");
-		System.out.println("4. ¿¬Ã¼·á °ü¸®");
-		System.out.println("5. ÀÌ¿ëÀÚ¸ğµå");
-		System.out.println("6. ÇÁ·Î±×·¥ Á¾·á");
+		System.out.println("<< ê´€ë¦¬ì ì„œë¹„ìŠ¤ ì„ íƒ >>");
+		System.out.println("1. ë„ì„œ ëŒ€ì¶œ í˜„í™©");
+		System.out.println("2. ë„ì„œ ê´€ë¦¬");
+		System.out.println("3. íšŒì›ì •ë³´ ì¡°íšŒ ë° ì‚­ì œ");
+		System.out.println("4. ì—°ì²´ë£Œ ê´€ë¦¬");
+		System.out.println("5. ì´ìš©ìëª¨ë“œ");
+		System.out.println("6. í”„ë¡œê·¸ë¨ ì¢…ë£Œ");
 	}
 
 
-	// °ü¸®ÀÚ ¸Ş´º ¼±ÅÃ
+	// ê´€ë¦¬ì ë©”ë‰´ ì„ íƒ
 	static public void menuSelect() throws IOException
 	{
 		do
@@ -56,78 +56,78 @@ class AdSystem extends LibCommon
 			con = br.readLine();
 
 			if (!(Integer.parseInt(con) >= 1 && Integer.parseInt(con) <= 6))
-				System.out.println("Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+				System.out.println("ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 		}
 		while (!(Integer.parseInt(con) >= 1 && Integer.parseInt(con) <= 6));
 	}
 
 
-	// °ü¸®ÀÚ ¸Ş´º ½ÇÇà
+	// ê´€ë¦¬ì ë©”ë‰´ ì‹¤í–‰
 	static public void menuRun() throws IOException
 	{
 		System.out.println(); 
 
 		switch(con)
 		{
-			case "1" : selectInfoMenu();		break;	// µµ¼­ ´ëÃâ ÇöÈ²
-			case "2" : selectAdminMenu();		break;	// µµ¼­ °ü¸®
-			case "3" : selectMemCon();			break;	// È¸¿øÁ¤º¸ Á¶È¸ ¹× »èÁ¦
-			case "4" : selectLateFee();			break;	// ¿¬Ã¼·á °ü¸®
-			case "5" : userOn();				break;	// ÀÌ¿ëÀÚ¸ğµå
-			case "6" : exit();					break;	// ÇÁ·Î±×·¥ Á¾·á
+			case "1" : selectInfoMenu();		break;	// ë„ì„œ ëŒ€ì¶œ í˜„í™©
+			case "2" : selectAdminMenu();		break;	// ë„ì„œ ê´€ë¦¬
+			case "3" : selectMemCon();			break;	// íšŒì›ì •ë³´ ì¡°íšŒ ë° ì‚­ì œ
+			case "4" : selectLateFee();			break;	// ì—°ì²´ë£Œ ê´€ë¦¬
+			case "5" : userOn();				break;	// ì´ìš©ìëª¨ë“œ
+			case "6" : exit();					break;	// í”„ë¡œê·¸ë¨ ì¢…ë£Œ
 		}
 	}
 
-	// °ü¸®ÀÚ ·Î±×ÀÎ
+	// ê´€ë¦¬ì ë¡œê·¸ì¸
 	static boolean login() throws IOException
 	{
-		String temp;	//-- ÀÔ·Â¹ŞÀº °ª
+		String temp;	//-- ì…ë ¥ë°›ì€ ê°’
 	
 		System.out.println();
-		System.out.println("<< °ü¸®ÀÚ ·Î±×ÀÎ >>");
+		System.out.println("<< ê´€ë¦¬ì ë¡œê·¸ì¸ >>");
 
-		// ¾ÆÀÌµğ È®ÀÎ
+		// ì•„ì´ë”” í™•ì¸
 		do
 		{
-			System.out.print("¡á ¾ÆÀÌµğ : ");
+			System.out.print("â–  ì•„ì´ë”” : ");
 			temp = br.readLine();
 
 			if (!ADMIN_ID.equals(temp))
-				System.out.println("Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+				System.out.println("ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 		}
 		while (!ADMIN_ID.equals(temp));
 		
 
-		// ÆĞ½º¿öµå È®ÀÎ
+		// íŒ¨ìŠ¤ì›Œë“œ í™•ì¸
 		do
 		{
-			System.out.print("¡á ºñ¹Ğ¹øÈ£ : ");
+			System.out.print("â–  ë¹„ë°€ë²ˆí˜¸ : ");
 			temp = br.readLine();
 
 			if (!ADMIN_PW.equals(temp))
-				System.out.println("Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+				System.out.println("ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 		}
 		while (!ADMIN_PW.equals(temp));
 
 
-		// ·Î±×ÀÎ ¼º°ø
-		System.out.println("°ü¸®ÀÚ·Î ·Î±×ÀÎÇÏ¿´½À´Ï´Ù.");
+		// ë¡œê·¸ì¸ ì„±ê³µ
+		System.out.println("ê´€ë¦¬ìë¡œ ë¡œê·¸ì¸í•˜ì˜€ìŠµë‹ˆë‹¤.");
 		return true;
 	}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-	// 1. µµ¼­ ´ëÃâ ÇöÈ²
+	// 1. ë„ì„œ ëŒ€ì¶œ í˜„í™©
 	static void selectInfoMenu() throws IOException
 	{
 		do
 		{
-			System.out.println("<<µµ¼­ ´ëÃâ ÇöÈ²>>");
-			System.out.println("1. ´ëÃâ ÇöÈ² °Ë»ö");
-			System.out.println("2. ¿¬Ã¼ ´ëÃâ ÇöÈ² Á¶È¸");
-			System.out.println("3. ÀüÃ¼ ´ëÃâ ÇöÈ² Á¶È¸");
-			System.out.println("0. °ü¸®ÀÚ ¼­ºñ½º ¼±ÅÃÀ¸·Î ÀÌµ¿");
+			System.out.println("<<ë„ì„œ ëŒ€ì¶œ í˜„í™©>>");
+			System.out.println("1. ëŒ€ì¶œ í˜„í™© ê²€ìƒ‰");
+			System.out.println("2. ì—°ì²´ ëŒ€ì¶œ í˜„í™© ì¡°íšŒ");
+			System.out.println("3. ì „ì²´ ëŒ€ì¶œ í˜„í™© ì¡°íšŒ");
+			System.out.println("0. ê´€ë¦¬ì ì„œë¹„ìŠ¤ ì„ íƒìœ¼ë¡œ ì´ë™");
 
 			do
 			{	
@@ -135,7 +135,7 @@ class AdSystem extends LibCommon
 				con = br.readLine();
 
 				if ( Integer.parseInt(con) < 0 && Integer.parseInt(con) >3  )
-					System.out.println("Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+					System.out.println("ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 			}
 			while ( Integer.parseInt(con) < 0 && Integer.parseInt(con) >3);
 			
@@ -143,10 +143,10 @@ class AdSystem extends LibCommon
 			boolean on = true;
 			switch(con)
 			{
-				case "1" : selectSearchMenu();	break;	// ´ëÃâ ÇöÈ² °Ë»ö
-				case "2" : overdueStatus();		break;	// ¿¬Ã¼ ´ëÃâ ÇöÈ² Á¶È¸
-				case "3" : rentalStatus();		break;	// ÀüÃ¼ ´ëÃâ ÇöÈ² Á¶È¸
-				case "4" : on = false;			break;	// °ü¸®ÀÚ ¸Ş´º·Î ÀÌµ¿ Back!
+				case "1" : selectSearchMenu();	break;	// ëŒ€ì¶œ í˜„í™© ê²€ìƒ‰
+				case "2" : overdueStatus();		break;	// ì—°ì²´ ëŒ€ì¶œ í˜„í™© ì¡°íšŒ
+				case "3" : rentalStatus();		break;	// ì „ì²´ ëŒ€ì¶œ í˜„í™© ì¡°íšŒ
+				case "4" : on = false;			break;	// ê´€ë¦¬ì ë©”ë‰´ë¡œ ì´ë™ Back!
 			}
 			return on;
 			*/
@@ -154,23 +154,23 @@ class AdSystem extends LibCommon
 		
 			switch(con)
 			{
-				case "1" : selectSearchMenu();	break;	// ´ëÃâ ÇöÈ² °Ë»ö
-				case "2" : overdueStatus();		break;	// ¿¬Ã¼ ´ëÃâ ÇöÈ² Á¶È¸
-				case "3" : rentalStatus();		break;	// ÀüÃ¼ ´ëÃâ ÇöÈ² Á¶È¸	
+				case "1" : selectSearchMenu();	break;	// ëŒ€ì¶œ í˜„í™© ê²€ìƒ‰
+				case "2" : overdueStatus();		break;	// ì—°ì²´ ëŒ€ì¶œ í˜„í™© ì¡°íšŒ
+				case "3" : rentalStatus();		break;	// ì „ì²´ ëŒ€ì¶œ í˜„í™© ì¡°íšŒ	
 			}
 		}
 		while ( !con.equals("0") );
 	}
 
 
-	// 1-1. ´ëÃâ ÇöÈ² °Ë»ö
+	// 1-1. ëŒ€ì¶œ í˜„í™© ê²€ìƒ‰
 	static void selectSearchMenu() throws IOException
 	{
 
-		System.out.println("\n<<´ëÃâ ÇöÈ² °Ë»ö>>");
-		System.out.println("1. µµ¼­ Á¦¸ñ");
-		System.out.println("2. ÀÌ¿ëÀÚ ID");
-		System.out.println("3. ÀÌÀü¸Ş´º·Î");
+		System.out.println("\n<<ëŒ€ì¶œ í˜„í™© ê²€ìƒ‰>>");
+		System.out.println("1. ë„ì„œ ì œëª©");
+		System.out.println("2. ì´ìš©ì ID");
+		System.out.println("3. ì´ì „ë©”ë‰´ë¡œ");
 
 		do
 		{	
@@ -178,133 +178,133 @@ class AdSystem extends LibCommon
 			con = br.readLine();
 
 			if (Integer.parseInt(con) < 0 && Integer.parseInt(con) >2)
-				System.out.println("Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+				System.out.println("ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 		}
 		while (Integer.parseInt(con) < 0 && Integer.parseInt(con) >2);
 		
 		switch(con)
 		{
-			case "1" : searchBook();	break;	// µµ¼­ Á¦¸ñ °Ë»ö
-			case "2" : searchId();		break;	// ÀÌ¿ëÀÚ ID °Ë»ö
+			case "1" : searchBook();	break;	// ë„ì„œ ì œëª© ê²€ìƒ‰
+			case "2" : searchId();		break;	// ì´ìš©ì ID ê²€ìƒ‰
 		}
 		System.out.println();
 	}
 
 
-	// 1-1-1. µµ¼­ Á¦¸ñÀ¸·Î °Ë»ö
+	 // 1-1-1. ë„ì„œ ì œëª©ìœ¼ë¡œ ê²€ìƒ‰
 	static void searchBook() throws IOException
 	{
-		System.out.println("\n<<µµ¼­ Á¦¸ñ °Ë»ö>>");
-		System.out.print("µµ¼­ Á¦¸ñ : ");
-		String title = br.readLine();
-		
-		System.out.println("\n<<µµ¼­ ´ëÃâ ÇöÈ²>>");
-		
-		if(Library.bookList.containsKey(title)){				//Á¸Àç¿©ºÎ
-			Enumeration e = Library.bookList.keys();			//e¿¡ bookList Å°µé
+	System.out.println("\n<<ë„ì„œ ì œëª© ê²€ìƒ‰>>");
+	System.out.print("ë„ì„œ ì œëª© : ");
+	String title = br.readLine();
 
-			if(Library.bookList.get(title).isRental()){			//´ëÃâ°¡´É¿©ºÎ
-				System.out.printf("%s Àº/´Â ´ëÃâ °¡´ÉÇÕ´Ï´Ù.\n",title);
-				selectSearchMenu();
-			}else{
-				for(int i=0; i<Library.rentList.size(); i++){
-					RentalInfo valR = Library.rentList.get(i);
+	System.out.println("\n<<ë„ì„œ ëŒ€ì¶œ í˜„í™©>>");
 
-					if(valR.getRBook().equals(title)){			//rentlist¿¡ ±× Ã¥ÀÌ Á¸ÀçÇÒ ¶§
-						System.out.printf("%s Àº/´Â ÇöÀç ´ëÃâÁßÀÔ´Ï´Ù.", title);
-						System.out.printf("\n¢ºÀÌ¿ëÀÚ : %s", valR.getRMem());
-							
-						// ¡Û ¹İ³³ ¿¹Á¤ÀÏ °è»ê                  
-						Calendar cal = new GregorianCalendar();			//-- ¹İ³³ ¿¹Á¤ÀÏÀ» ´ãÀ» º¯¼ö ¼±¾ğ
+	if(Library.bookList.containsKey(title)){            //ì¡´ì¬ì—¬ë¶€
+	 Enumeration e = Library.bookList.keys();         //eì— bookList í‚¤ë“¤
 
-						int y = valR.getRentalDate().get(Calendar.YEAR);
-						int m = valR.getRentalDate().get(Calendar.MONTH);
-						int d = valR.getRentalDate().get(Calendar.DATE);
-						cal.set(y,m,d);									// ´ëÃâÇÑ ³¯Â¥ ¼ÂÆÃ   
-						cal.add(Calendar.DATE, Library.RENT_DAYS);		// ´ëÃâÇÑ ³¯Â¥ + ´ëÃâ±âÇÑ = ¹İ³³ ¿¹Á¤ÀÏ
-																		// Library.RENT_DAYS: final º¯¼ö·Î ¼±¾ğÇÑ ´ëÃâ±âÇÑ
+	 if(Library.bookList.get(title).isRental()){         //ëŒ€ì¶œê°€ëŠ¥ì—¬ë¶€
+	    System.out.printf("%s ì€/ëŠ” ëŒ€ì¶œ ê°€ëŠ¥í•©ë‹ˆë‹¤.\n",title);
+	    selectSearchMenu();
+	 }else{
+	    for(int i=Library.rentList.size()-1; i>0; i--){
+	       RentalInfo valR = Library.rentList.get(i);
 
-						// ----------- ¹İ³³ ¿¹Á¤ÀÏ °è»ê ¿Ï·á!
-						  
+	       if(valR.getRBook().equals(title)){         //rentlistì— ê·¸ ì±…ì´ ì¡´ì¬í•  ë•Œ
+		  System.out.printf("%s ì€/ëŠ” í˜„ì¬ ëŒ€ì¶œì¤‘ì…ë‹ˆë‹¤.", title);
+		  System.out.printf("\nâ–¶ì´ìš©ì : %s", valR.getRMem());
 
-						// ¡Û ³²Àº ¹İ³³ ±âÇÑ °è»ê
-						Calendar today = new GregorianCalendar();		//-- ¿À´Ã                  
-						long sec = (cal.getTimeInMillis() - today.getTimeInMillis())/ 1000;   // '¹İ³³¿¹Á¤ÀÏ(¹Ì·¡) - ¿À´Ã' ÀÇ ÃÊ
+		  // â—‹ ë°˜ë‚© ì˜ˆì •ì¼ ê³„ì‚°                  
+		  Calendar cal = new GregorianCalendar();         //-- ë°˜ë‚© ì˜ˆì •ì¼ì„ ë‹´ì„ ë³€ìˆ˜ ì„ ì–¸
 
-						// ÀÔ°í³¯Â¥¿Í ÇöÀç³¯Â¥ÀÇ Â÷ÀÌ¸¦ ÀÏ ´ÜÀ§·Î º¯È¯
-						// ¡Ø 1ÀÏ = 24(½Ã°£) * 60(ºĞ) * 60(ÃÊ)
-						//     µû¶ó¼­, sec °ª¿¡¼­ 24*60*60 ÇÑ °ªÀ» ³ª´©¸é ÃÊ ¿¡¼­ ÀÏ·Î º¯È¯ °¡´É
-						long days = sec / (24*60*60);
-		   
-						// ¡Û Ãâ·Â
-						if(days>=0)
-							System.out.printf("\n¢º³²Àº ¹İ³³ ±âÇÑ : %dÀÏ\n", days); 
-						else
-							System.out.printf("\n¢º%dÀÏ Â°, ¿¬Ã¼ Áß\n", Math.abs(days));	//Àı´ñ°ªÀ¸·Î ¿¬Ã¼ ÁßÀÎ ³¯Â¥ °è»ê
-						
-						return;
-					}
-				}
-			}
-		}else
-			System.out.printf("\n%s Àº/´Â Á¸ÀçÇÏÁö ¾Ê´Â µµ¼­ÀÔ´Ï´Ù.\n", title);  
-		
+		  int y = valR.getRentalDate().get(Calendar.YEAR);
+		  int m = valR.getRentalDate().get(Calendar.MONTH);
+		  int d = valR.getRentalDate().get(Calendar.DATE);
+		  cal.set(y,m,d);                           // ëŒ€ì¶œí•œ ë‚ ì§œ ì…‹íŒ…   
+		  cal.add(Calendar.DATE, Library.RENT_DAYS);      // ëŒ€ì¶œí•œ ë‚ ì§œ + ëŒ€ì¶œê¸°í•œ = ë°˜ë‚© ì˜ˆì •ì¼
+						      // Library.RENT_DAYS: final ë³€ìˆ˜ë¡œ ì„ ì–¸í•œ ëŒ€ì¶œê¸°í•œ
+
+		  // ----------- ë°˜ë‚© ì˜ˆì •ì¼ ê³„ì‚° ì™„ë£Œ!
+
+
+		  // â—‹ ë‚¨ì€ ë°˜ë‚© ê¸°í•œ ê³„ì‚°
+		  Calendar today = new GregorianCalendar();      //-- ì˜¤ëŠ˜                  
+		  long sec = (cal.getTimeInMillis() - today.getTimeInMillis())/ 1000;   // 'ë°˜ë‚©ì˜ˆì •ì¼(ë¯¸ë˜) - ì˜¤ëŠ˜' ì˜ ì´ˆ
+
+		  // ì…ê³ ë‚ ì§œì™€ í˜„ì¬ë‚ ì§œì˜ ì°¨ì´ë¥¼ ì¼ ë‹¨ìœ„ë¡œ ë³€í™˜
+		  // â€» 1ì¼ = 24(ì‹œê°„) * 60(ë¶„) * 60(ì´ˆ)
+		  //     ë”°ë¼ì„œ, sec ê°’ì—ì„œ 24*60*60 í•œ ê°’ì„ ë‚˜ëˆ„ë©´ ì´ˆ ì—ì„œ ì¼ë¡œ ë³€í™˜ ê°€ëŠ¥
+		  long days = sec / (24*60*60);
+
+		  // â—‹ ì¶œë ¥
+		  if(days>=0)
+		     System.out.printf("\nâ–¶ë‚¨ì€ ë°˜ë‚© ê¸°í•œ : %dì¼\n", days); 
+		  else
+		     System.out.printf("\nâ–¶%dì¼ ì§¸, ì—°ì²´ ì¤‘\n", Math.abs(days));   //ì ˆëŒ“ê°’ìœ¼ë¡œ ì—°ì²´ ì¤‘ì¸ ë‚ ì§œ ê³„ì‚°
+
+		  return;
+	       }
+	    }
+	 }
+	}else
+	 System.out.printf("\n%s ì€/ëŠ” ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ë„ì„œì…ë‹ˆë‹¤.\n", title);  
+
 	}
 
 
-	// 1-1-2. ÀÌ¿ëÀÚ ID·Î °Ë»ö
+	// 1-1-2. ì´ìš©ì IDë¡œ ê²€ìƒ‰
 	static void searchId() throws IOException
 	{
-		String tempId;   //-- »ç¿ëÀÚ·ÎºÎÅÍ ÀÔ·Â ¹ŞÀº °ªÀ» ´ãÀ» º¯¼ö
+		String tempId;   //-- ì‚¬ìš©ìë¡œë¶€í„° ì…ë ¥ ë°›ì€ ê°’ì„ ë‹´ì„ ë³€ìˆ˜
 
-		System.out.println("\n<<ÀÌ¿ëÀÚ ID Á¶È¸>>");
-		System.out.print("È¸¿ø ID: ");
+		System.out.println("\n<<ì´ìš©ì ID ì¡°íšŒ>>");
+		System.out.print("íšŒì› ID: ");
 		tempId = br.readLine();
 
 		System.out.println();
-		System.out.println("<< È¸¿ø ID °Ë»ö °á°ú >>");
+		System.out.println("<< íšŒì› ID ê²€ìƒ‰ ê²°ê³¼ >>");
 
-		if (Library.memList.containsKey(tempId))   // °Ë»öÇÑ ID°¡ ÀÖ´Ù¸é
+		if (Library.memList.containsKey(tempId))   // ê²€ìƒ‰í•œ IDê°€ ìˆë‹¤ë©´
 		{
-			// valMem = °Ë»öÇÑ È¸¿ø Á¤º¸
+			// valMem = ê²€ìƒ‰í•œ íšŒì› ì •ë³´
 			Members valMem = Library.memList.get(tempId);
 
-			System.out.println("È¸¿ø ID : " + tempId);
-			System.out.println("ÀÌ¸§    : " + valMem.getName());
+			System.out.println("íšŒì› ID : " + tempId);
+			System.out.println("ì´ë¦„    : " + valMem.getName());
 
 			System.out.println();
-			System.out.println("[´ëÃâ ÁßÀÎ Ã¥ ¸ñ·Ï]");
-			System.out.printf("%15s \t%3s \t%4s\n", "µµ¼­¸í", "¿¬Ã¼", "¿¬Ã¼·á");
+			System.out.println("[ëŒ€ì¶œ ì¤‘ì¸ ì±… ëª©ë¡]");
+			System.out.printf("%15s \t%3s \t%4s\n", "ë„ì„œëª…", "ì—°ì²´", "ì—°ì²´ë£Œ");
 			System.out.println("=======================================");
 
-			int i = 1; //-- Ãâ·ÂÇÒ Ã¥ÀÇ ¼ø¼­¸¦ ´ãÀ» º¯¼ö
-			for (int idx=0; idx<Library.rentList.size(); idx++)   // ¨ç
+			int i = 1; //-- ì¶œë ¥í•  ì±…ì˜ ìˆœì„œë¥¼ ë‹´ì„ ë³€ìˆ˜
+			for (int idx=0; idx<Library.rentList.size(); idx++)   // â‘ 
 			{
-				RentalInfo r = Library.rentList.get(idx);   //-- ÀÌ¹ø¿¡ ¹Ş¾Æ¿Â ´ëÃâ Á¤º¸
+				RentalInfo r = Library.rentList.get(idx);   //-- ì´ë²ˆì— ë°›ì•„ì˜¨ ëŒ€ì¶œ ì •ë³´
 						
-				if (tempId.equals(r.getRMem()) && !r.isReturnBook() )   // ¨è, ¨é
+				if (tempId.equals(r.getRMem()) && !r.isReturnBook() )   // â‘¡, â‘¢
 					System.out.printf("[%d] %11s \t%3s \t%,4d\n", i++, r.getRBook(), overdue(r), calLateFee(r));
 			}
 			System.out.println("=======================================");
 
-			System.out.printf("ÃÑ ¹Ì³³ ¿¬Ã¼·á: %,d¿ø\n", calLateFee(tempId));
+			System.out.printf("ì´ ë¯¸ë‚© ì—°ì²´ë£Œ: %,dì›\n", calLateFee(tempId));
 		}
 		else
-			System.out.println(tempId + "Àº/´Â Á¸ÀçÇÏÁö ¾Ê´Â È¸¿øÀÔ´Ï´Ù.");
+			System.out.println(tempId + "ì€/ëŠ” ì¡´ì¬í•˜ì§€ ì•ŠëŠ” íšŒì›ì…ë‹ˆë‹¤.");
 
 		System.out.println();
 	}
 
 	
-	// 1-2. ¿¬Ã¼ ´ëÃâ ÇöÈ² Á¶È¸
+	// 1-2. ì—°ì²´ ëŒ€ì¶œ í˜„í™© ì¡°íšŒ
 	static void overdueStatus() throws IOException
 	{
-		System.out.println("\n<<¿¬Ã¼ ´ëÃâ ÇöÈ² Á¶È¸>>");
-		System.out.printf("%12s %7s %7s %5s %5s\n", "µµ¼­¸í", "ÀÌ¿ëÀÚ¸í", "´ëÃâÀÏÀÚ", "¿¬Ã¼ÀÏ¼ö", "¿¬Ã¼·á");
+		System.out.println("\n<<ì—°ì²´ ëŒ€ì¶œ í˜„í™© ì¡°íšŒ>>");
+		System.out.printf("%12s %7s %7s %5s %5s\n", "ë„ì„œëª…", "ì´ìš©ìëª…", "ëŒ€ì¶œì¼ì", "ì—°ì²´ì¼ìˆ˜", "ì—°ì²´ë£Œ");
 		System.out.println("===================================================================");
 		
 		
-		//Ãâ·Â
+		//ì¶œë ¥
 		Enumeration e = Library.memList.keys(); 
 		//String tempName="";
 		while(e.hasMoreElements()) 
@@ -325,15 +325,15 @@ class AdSystem extends LibCommon
 	}
 	
 
-	// 1-3. ÀüÃ¼ ´ëÃâ ÇöÈ² Á¶È¸
+	// 1-3. ì „ì²´ ëŒ€ì¶œ í˜„í™© ì¡°íšŒ
 	static void rentalStatus() throws IOException
 	{
-		System.out.println("\n<<ÀüÃ¼ ´ëÃâ ÇöÈ² Á¶È¸>>");
-		System.out.printf("%12s %7s %7s %5s %5s\n", "µµ¼­¸í", "ÀÌ¿ëÀÚ¸í", "´ëÃâÀÏÀÚ", "¿¬Ã¼¿©ºÎ", "¿¬Ã¼ÀÏ¼ö");
+		System.out.println("\n<<ì „ì²´ ëŒ€ì¶œ í˜„í™© ì¡°íšŒ>>");
+		System.out.printf("%12s %7s %7s %5s %5s\n", "ë„ì„œëª…", "ì´ìš©ìëª…", "ëŒ€ì¶œì¼ì", "ì—°ì²´ì—¬ë¶€", "ì—°ì²´ì¼ìˆ˜");
 		System.out.println("===================================================================");
 		
 		
-		//Ãâ·Â
+		//ì¶œë ¥
 		Enumeration e = Library.memList.keys(); 
 		String tempName="";
 		while(e.hasMoreElements()) 
@@ -359,17 +359,17 @@ class AdSystem extends LibCommon
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-	// 2. µµ¼­ °ü¸® ¼±ÅÃ
+	// 2. ë„ì„œ ê´€ë¦¬ ì„ íƒ
 	static void selectAdminMenu() throws IOException
 	{
 		do
 		{
-			System.out.println("\n<<µµ¼­ °ü¸® ¼±ÅÃ>>");
-			System.out.println("1. µµ¼­ Ãß°¡");
-			System.out.println("2. ÀüÃ¼ µµ¼­ ¸ñ·Ï");
-			System.out.println("3. Èñ¸Á µµ¼­ °ü¸®");
-			System.out.println("4. ½Å±Ô ÀÔ°í µµ¼­ ¸ñ·Ï");
-			System.out.println("0. °ü¸®ÀÚ ¼­ºñ½º ¼±ÅÃÀ¸·Î ÀÌµ¿");
+			System.out.println("\n<<ë„ì„œ ê´€ë¦¬ ì„ íƒ>>");
+			System.out.println("1. ë„ì„œ ì¶”ê°€");
+			System.out.println("2. ì „ì²´ ë„ì„œ ëª©ë¡");
+			System.out.println("3. í¬ë§ ë„ì„œ ê´€ë¦¬");
+			System.out.println("4. ì‹ ê·œ ì…ê³  ë„ì„œ ëª©ë¡");
+			System.out.println("0. ê´€ë¦¬ì ì„œë¹„ìŠ¤ ì„ íƒìœ¼ë¡œ ì´ë™");
 
 			do
 			{	
@@ -377,52 +377,52 @@ class AdSystem extends LibCommon
 				con = br.readLine();
 
 				if ( Integer.parseInt(con) < 0 && Integer.parseInt(con) >4)
-					System.out.println("Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+					System.out.println("ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 			}
 			while ( Integer.parseInt(con) < 0 && Integer.parseInt(con) >4);
 			
 		
 			switch(con)
 			{
-				case "1" : addBook();					break;	// µµ¼­Ãß°¡
-				case "2" : allBookList();				break;	// ÀüÃ¼ µµ¼­ ¸ñ·Ï
-				case "3" : wishBookCon();				break;	// Èñ¸Á µµ¼­ ¸ñ·Ï
-				case "4" : newBookListPrint();			break;	// ½Å±Ô ÀÔ°í µµ¼­ ¸ñ·Ï
+				case "1" : addBook();					break;	// ë„ì„œì¶”ê°€
+				case "2" : allBookList();				break;	// ì „ì²´ ë„ì„œ ëª©ë¡
+				case "3" : wishBookCon();				break;	// í¬ë§ ë„ì„œ ëª©ë¡
+				case "4" : newBookListPrint();			break;	// ì‹ ê·œ ì…ê³  ë„ì„œ ëª©ë¡
 			}
 		}
 		while ( !con.equals("0") );
 	
 	}
 
-	// 2-1. µµ¼­ Ãß°¡
+	// 2-1. ë„ì„œ ì¶”ê°€
 	static void addBook() throws IOException
 	{	
 		String title, a, p, y, cN, ca;
-		System.out.print("µµ¼­¸í : ");
+		System.out.print("ë„ì„œëª… : ");
 		title = br.readLine();
-		System.out.print("ÀúÀÚ : ");
+		System.out.print("ì €ì : ");
 		a = br.readLine();
-		System.out.print("ÃâÆÇ»ç : ");
+		System.out.print("ì¶œíŒì‚¬ : ");
 		p = br.readLine();
-		System.out.print("ÃâÆÇ³âµµ : ");
+		System.out.print("ì¶œíŒë…„ë„ : ");
 		y = br.readLine();
-		System.out.print("ºĞ·ù¹øÈ£ : ");
+		System.out.print("ë¶„ë¥˜ë²ˆí˜¸ : ");
 		cN = br.readLine();
-		System.out.print("Ä«Å×°í¸® : ");
+		System.out.print("ì¹´í…Œê³ ë¦¬ : ");
 		ca = br.readLine();
 		Calendar cal = new GregorianCalendar();
 
 		Library.bookList.put(title, new Books(a,p,y,cN,ca, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE)) );
-		System.out.println("µµ¼­ Ãß°¡ ¿Ï·á!");
+		System.out.println("ë„ì„œ ì¶”ê°€ ì™„ë£Œ!");
 	}
 
 
-	// 2-2. ÀüÃ¼ µµ¼­ ¸ñ·Ï
+	// 2-2. ì „ì²´ ë„ì„œ ëª©ë¡
 	static void allBookList() throws IOException
 	{
-		System.out.println("\n\t\t\t\t[ÀüÃ¼ µµ¼­ ¸ñ·Ï]");
+		System.out.println("\n\t\t\t\t[ì „ì²´ ë„ì„œ ëª©ë¡]");
 		System.out.println("===================================================================================================================");
-		System.out.printf("%s %10s %10s %10s %10s %10s %12s %10s\n", "µµ¼­¸í", "ÀúÀÚ¸í", "ÃâÆÇ»ç", "ÃâÆÇ³âµµ", "ºĞ·ù¹øÈ£", "Ä«Å×°í¸®", "ÀÔ°íÀÏÀÚ", "´ëÃâ¿©ºÎ");
+		System.out.printf("%s %10s %10s %10s %10s %10s %12s %10s\n", "ë„ì„œëª…", "ì €ìëª…", "ì¶œíŒì‚¬", "ì¶œíŒë…„ë„", "ë¶„ë¥˜ë²ˆí˜¸", "ì¹´í…Œê³ ë¦¬", "ì…ê³ ì¼ì", "ëŒ€ì¶œì—¬ë¶€");
 		System.out.println("===================================================================================================================");
 
 		Enumeration e = Library.bookList.keys(); 
@@ -438,12 +438,12 @@ class AdSystem extends LibCommon
 	}
 
 
-	// 2-3. Èñ¸Á µµ¼­ °ü¸®
+	// 2-3. í¬ë§ ë„ì„œ ê´€ë¦¬
 	static void wishBookCon() throws IOException
 	{	
-		//Èñ¸Á µµ¼­ ¸ñ·Ï
+		//í¬ë§ ë„ì„œ ëª©ë¡
 		System.out.println("\n===================================================================");
-		System.out.printf("%12s %10s %5s %10s %5s\n", "µµ¼­¸í", "ÀúÀÚ¸í", "½ÅÃ»ÀÚ", "½ÅÃ»ÀÏÀÚ", "½ÅÃ»»óÅÂ");
+		System.out.printf("%12s %10s %5s %10s %5s\n", "ë„ì„œëª…", "ì €ìëª…", "ì‹ ì²­ì", "ì‹ ì²­ì¼ì", "ì‹ ì²­ìƒíƒœ");
 		System.out.println("===================================================================");
 		
 		for(int i=0; i<Library.wishList.size(); i++){
@@ -452,9 +452,9 @@ class AdSystem extends LibCommon
 							,valW.getWMem(), valW.getReqDateStr(), valW.getRequestStr());
 	}
 
-		//½ÅÃ»°ÅºÎ¸Ş´º
-		System.out.println("1. ½ÅÃ»°ÅºÎ");
-		System.out.println("2. ÀÌÀü¸Ş´º·Î");
+		//ì‹ ì²­ê±°ë¶€ë©”ë‰´
+		System.out.println("1. ì‹ ì²­ê±°ë¶€");
+		System.out.println("2. ì´ì „ë©”ë‰´ë¡œ");
 
 		do
 		{	
@@ -462,21 +462,21 @@ class AdSystem extends LibCommon
 			con = br.readLine();
 
 			if ( Integer.parseInt(con) < 1 && Integer.parseInt(con) >2 )
-				System.out.println("Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+				System.out.println("ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 		}
 		while ( Integer.parseInt(con) < 1 && Integer.parseInt(con) >2);
 		
 		switch(con)
 		{
-			case "1" : wishReject();			break;	// ½ÅÃ»°ÅºÎ
-			case "2" : return;							// ÀÌÀü¸Ş´º·Î
+			case "1" : wishReject();			break;	// ì‹ ì²­ê±°ë¶€
+			case "2" : return;							// ì´ì „ë©”ë‰´ë¡œ
 		}
 	}
 	
 	static void wishReject() throws IOException
 	{
-		System.out.println("\n[Èñ¸Á µµ¼­ ½ÅÃ» °ÅºÎ]");
-		System.out.print("µµ¼­¸í ÀÔ·Â : ");
+		System.out.println("\n[í¬ë§ ë„ì„œ ì‹ ì²­ ê±°ë¶€]");
+		System.out.print("ë„ì„œëª… ì…ë ¥ : ");
 		String title = br.readLine();
 
 		for(int i=0; i<Library.wishList.size(); i++){
@@ -484,15 +484,15 @@ class AdSystem extends LibCommon
 
 			if((valW.getWTitle()).equals(title)){
 				valW.setRequest(3);
-				System.out.printf("\n%s ÀÌ/°¡ ½ÅÃ» °ÅºÎµÇ¾ú½À´Ï´Ù.\n",title);
+				System.out.printf("\n%s ì´/ê°€ ì‹ ì²­ ê±°ë¶€ë˜ì—ˆìŠµë‹ˆë‹¤.\n",title);
 				selectAdminMenu();
 				return;
 			}
 			else{
 				if(i==Library.wishList.size()-1)//{
-					System.out.printf("%s Àº/´Â Èñ¸Á µµ¼­¿¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.\n",title);
+					System.out.printf("%s ì€/ëŠ” í¬ë§ ë„ì„œì— ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\n",title);
 								
-				continue;	//wishList ¸¶Áö¸·±îÁö Á¸ÀçÇÏ´ÂÁö È®ÀÎÇÏ±â À§ÇØ i¹øÂ° ÇØ´ç ¹İº¹¹®¸¸ Å»Ãâ
+				continue;	//wishList ë§ˆì§€ë§‰ê¹Œì§€ ì¡´ì¬í•˜ëŠ”ì§€ í™•ì¸í•˜ê¸° ìœ„í•´ ië²ˆì§¸ í•´ë‹¹ ë°˜ë³µë¬¸ë§Œ íƒˆì¶œ
 			}
 		}
 	}
@@ -501,38 +501,38 @@ class AdSystem extends LibCommon
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-	// 3. È¸¿øÁ¤º¸ Á¶È¸ ¹× »èÁ¦
+	// 3. íšŒì›ì •ë³´ ì¡°íšŒ ë° ì‚­ì œ
 	static void selectMemCon() throws IOException
 	{
 		do
 		{
-			// ¼±ÅÃÃ¢ µğ½ºÇÃ·¹ÀÌ
-			System.out.println("<È¸¿øÁ¤º¸ Á¶È¸ ¹× »èÁ¦>");
-			System.out.println("1. ÀüÃ¼ È¸¿ø Á¶È¸"); 
-			System.out.println("2. È¸¿ø °Ë»ö"); 
-			System.out.println("3. È¸¿ø »èÁ¦"); 
-			System.out.println("0. °ü¸®ÀÚ ¼­ºñ½º ¼±ÅÃÀ¸·Î ÀÌµ¿");
+			// ì„ íƒì°½ ë””ìŠ¤í”Œë ˆì´
+			System.out.println("<íšŒì›ì •ë³´ ì¡°íšŒ ë° ì‚­ì œ>");
+			System.out.println("1. ì „ì²´ íšŒì› ì¡°íšŒ"); 
+			System.out.println("2. íšŒì› ê²€ìƒ‰"); 
+			System.out.println("3. íšŒì› ì‚­ì œ"); 
+			System.out.println("0. ê´€ë¦¬ì ì„œë¹„ìŠ¤ ì„ íƒìœ¼ë¡œ ì´ë™");
 		
-			// ¼±ÅÃ ¹Ş±â
+			// ì„ íƒ ë°›ê¸°
 			do
 			{	
 				System.out.print(">> ");
 				con = br.readLine();
 
 				if (!(Integer.parseInt(con) >= 0 && Integer.parseInt(con) <= 3))
-					System.out.println("Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+					System.out.println("ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 			}
 			while (!(Integer.parseInt(con) >= 0 && Integer.parseInt(con) <= 3));
 
-			// ½ÇÇà
+			// ì‹¤í–‰
 			System.out.println(); 
 
 			
 			switch(con)
 			{
-				case "1" : printAllMem();	break;	// ÀüÃ¼ È¸¿ø Á¶È¸
-				case "2" : searchMem();		break;	// È¸¿ø °Ë»ö
-				case "3" : removeMem();		break;	// È¸¿ø »èÁ¦
+				case "1" : printAllMem();	break;	// ì „ì²´ íšŒì› ì¡°íšŒ
+				case "2" : searchMem();		break;	// íšŒì› ê²€ìƒ‰
+				case "3" : removeMem();		break;	// íšŒì› ì‚­ì œ
 			}
 		}
 		while ( !con.equals("0") );
@@ -541,12 +541,12 @@ class AdSystem extends LibCommon
 	}
 
 
-	// 3-1. ÀüÃ¼ È¸¿ø Á¶È¸
+	// 3-1. ì „ì²´ íšŒì› ì¡°íšŒ
 	private static void printAllMem()
 	{
-		System.out.println("\t\t[ÀüÃ¼ È¸¿ø Á¶È¸]");
+		System.out.println("\t\t[ì „ì²´ íšŒì› ì¡°íšŒ]");
 		System.out.println("===================================================================");
-		System.out.printf("%7s \t%5s \t%8s \t%3s \t%6s \n", "ID", "ÀÌ¸§", "´ëÃâµµ¼­(±Ç)", "¿¬Ã¼", "¹Ì³³¿¬Ã¼·á");
+		System.out.printf("%7s \t%5s \t%8s \t%3s \t%6s \n", "ID", "ì´ë¦„", "ëŒ€ì¶œë„ì„œ(ê¶Œ)", "ì—°ì²´", "ë¯¸ë‚©ì—°ì²´ë£Œ");
 		System.out.println("===================================================================");
 
 		Enumeration e = Library.memList.keys();   
@@ -561,162 +561,162 @@ class AdSystem extends LibCommon
 		System.out.println("===================================================================");
 	}
 	
-	// 3-2. È¸¿ø °Ë»ö
+	// 3-2. íšŒì› ê²€ìƒ‰
 	private static void searchMem() throws IOException
 	{
-		String tempId;	//-- »ç¿ëÀÚ·ÎºÎÅÍ ÀÔ·Â ¹ŞÀº °ªÀ» ´ãÀ» º¯¼ö
+		String tempId;	//-- ì‚¬ìš©ìë¡œë¶€í„° ì…ë ¥ ë°›ì€ ê°’ì„ ë‹´ì„ ë³€ìˆ˜
 
-		System.out.println("<È¸¿øÁ¤º¸ Á¶È¸>");
-		System.out.print("È¸¿ø ID: ");
+		System.out.println("<íšŒì›ì •ë³´ ì¡°íšŒ>");
+		System.out.print("íšŒì› ID: ");
 		tempId = br.readLine();
 
 		System.out.println();
-		System.out.println("<< È¸¿ø ID °Ë»ö °á°ú >>");
+		System.out.println("<< íšŒì› ID ê²€ìƒ‰ ê²°ê³¼ >>");
 
-		if (Library.memList.containsKey(tempId))	// °Ë»öÇÑ ID°¡ ÀÖ´Ù¸é
+		if (Library.memList.containsKey(tempId))	// ê²€ìƒ‰í•œ IDê°€ ìˆë‹¤ë©´
 		{
-			// valMem = °Ë»öÇÑ È¸¿ø Á¤º¸
+			// valMem = ê²€ìƒ‰í•œ íšŒì› ì •ë³´
 			Members valMem = Library.memList.get(tempId);
 
-			System.out.println("È¸¿ø ID : " + tempId);
-			System.out.println("ÀÌ¸§    : " + valMem.getName());
+			System.out.println("íšŒì› ID : " + tempId);
+			System.out.println("ì´ë¦„    : " + valMem.getName());
 
-			// ´ëÃâ ÁßÀÎ Ã¥ Ãâ·Â
-			//	¨ç ´ëÃâÁ¤º¸(Library.rentList)¸¦ ÀüÃ¼ÀûÀ¸·Î È®ÀÎÇÏ¿©,
-			//	¨è ÀÔ·Â ¹ŞÀº ID(tempId) ¿Í ´ëÃâÁ¤º¸ id(rentInfo ÀÇ rMem)°¡ µ¿ÀÏÇÏ°í, 
-			//		´ëÃâ Áß(rentInfo ÀÇ returnBook)ÀÎ °ªÀ» Ã£¾Æ¼­ (¡Ø returnBook ¡æ true: ¹İ³³¿Ï·á, false: ´ëÃâ Áß)
-			//	¨é ±× °ªÀÇ Á¤º¸¸¦ Ãâ·Â!
+			// ëŒ€ì¶œ ì¤‘ì¸ ì±… ì¶œë ¥
+			//	â‘  ëŒ€ì¶œì •ë³´(Library.rentList)ë¥¼ ì „ì²´ì ìœ¼ë¡œ í™•ì¸í•˜ì—¬,
+			//	â‘¡ ì…ë ¥ ë°›ì€ ID(tempId) ì™€ ëŒ€ì¶œì •ë³´ id(rentInfo ì˜ rMem)ê°€ ë™ì¼í•˜ê³ , 
+			//		ëŒ€ì¶œ ì¤‘(rentInfo ì˜ returnBook)ì¸ ê°’ì„ ì°¾ì•„ì„œ (â€» returnBook â†’ true: ë°˜ë‚©ì™„ë£Œ, false: ëŒ€ì¶œ ì¤‘)
+			//	â‘¢ ê·¸ ê°’ì˜ ì •ë³´ë¥¼ ì¶œë ¥!
 			
 			System.out.println();
-			System.out.println("[´ëÃâ ÁßÀÎ Ã¥ ¸ñ·Ï]");
-			System.out.printf("%10s \t%3s \t%4s\n", "µµ¼­¸í", "¿¬Ã¼", "¿¬Ã¼·á");
+			System.out.println("[ëŒ€ì¶œ ì¤‘ì¸ ì±… ëª©ë¡]");
+			System.out.printf("%10s \t%3s \t%4s\n", "ë„ì„œëª…", "ì—°ì²´", "ì—°ì²´ë£Œ");
 			System.out.println("============================================");
 
-			int i = 1; //-- Ãâ·ÂÇÒ Ã¥ÀÇ ¼ø¼­¸¦ ´ãÀ» º¯¼ö
-			for (int idx=0; idx<Library.rentList.size(); idx++)	// ¨ç
+			int i = 1; //-- ì¶œë ¥í•  ì±…ì˜ ìˆœì„œë¥¼ ë‹´ì„ ë³€ìˆ˜
+			for (int idx=0; idx<Library.rentList.size(); idx++)	// â‘ 
 			{
-				RentalInfo r = Library.rentList.get(idx);	//-- ÀÌ¹ø¿¡ ¹Ş¾Æ¿Â ´ëÃâ Á¤º¸
+				RentalInfo r = Library.rentList.get(idx);	//-- ì´ë²ˆì— ë°›ì•„ì˜¨ ëŒ€ì¶œ ì •ë³´
 								
-				if (tempId.equals(r.getRMem()) && !r.isReturnBook() )	// ¨è, ¨é
+				if (tempId.equals(r.getRMem()) && !r.isReturnBook() )	// â‘¡, â‘¢
 					System.out.printf("[%d] %9s \t%3s \t%,4d\n", i++, r.getRBook(), overdue(r), calLateFee(r));
 			}
 			System.out.println("============================================");
 
-			System.out.printf("ÃÑ ¹Ì³³ ¿¬Ã¼·á: %,d¿ø\n", calLateFee(tempId));
+			System.out.printf("ì´ ë¯¸ë‚© ì—°ì²´ë£Œ: %,dì›\n", calLateFee(tempId));
 		}
 		else
-			System.out.println(tempId + "Àº/´Â Á¸ÀçÇÏÁö ¾Ê´Â È¸¿øÀÔ´Ï´Ù.");
+			System.out.println(tempId + "ì€/ëŠ” ì¡´ì¬í•˜ì§€ ì•ŠëŠ” íšŒì›ì…ë‹ˆë‹¤.");
 
 		System.out.println();
 	}
 
-	// 3-3. È¸¿ø »èÁ¦
+	// 3-3. íšŒì› ì‚­ì œ
 	private static void removeMem() throws IOException		
 	{
 		String temp;
 
-		System.out.println("<È¸¿øÁ¤º¸ »èÁ¦>");
-		System.out.print("È¸¿ø ID: ");
+		System.out.println("<íšŒì›ì •ë³´ ì‚­ì œ>");
+		System.out.print("íšŒì› ID: ");
 		temp = br.readLine();
 
 		System.out.println();
-		System.out.println("<< È¸¿ø ID »èÁ¦ °á°ú >>");
+		System.out.println("<< íšŒì› ID ì‚­ì œ ê²°ê³¼ >>");
 
-		if (Library.memList.containsKey(temp))	// °Ë»öÇÑ ID°¡ ÀÖ´Ù¸é
+		if (Library.memList.containsKey(temp))	// ê²€ìƒ‰í•œ IDê°€ ìˆë‹¤ë©´
 		{
 			Library.memList.remove(temp);
 
-			System.out.println("È¸¿ø " + temp + "À»/¸¦ »èÁ¦Çß½À´Ï´Ù.");
+			System.out.println("íšŒì› " + temp + "ì„/ë¥¼ ì‚­ì œí–ˆìŠµë‹ˆë‹¤.");
 		}
 		else
-			System.out.println(temp + "Àº/´Â Á¸ÀçÇÏÁö ¾Ê´Â È¸¿øÀÔ´Ï´Ù.");
+			System.out.println(temp + "ì€/ëŠ” ì¡´ì¬í•˜ì§€ ì•ŠëŠ” íšŒì›ì…ë‹ˆë‹¤.");
 		System.out.println();
 	}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-	// 4. ¿¬Ã¼·á °ü¸®
+	// 4. ì—°ì²´ë£Œ ê´€ë¦¬
 	static void selectLateFee() throws IOException
 	{
 		do
 		{
-			// ¼±ÅÃÃ¢ µğ½ºÇÃ·¹ÀÌ
-			System.out.println("<¿¬Ã¼·á °ü¸®>");
-			System.out.println("1. ÃÑ ¿¬Ã¼·á Á¶È¸"); 
-			System.out.println("2. È¸¿øº° ¿¬Ã¼·á ÀÌ·Â Á¶È¸"); 
-			System.out.println("3. µµ¼­º° ¿¬Ã¼·á ÀÌ·Â Á¶È¸"); 
-			System.out.println("4. °Å½º¸§µ· Á¶È¸ ¹× ÀÔÃâ±İ"); 
-			System.out.println("0. °ü¸®ÀÚ ¼­ºñ½º ¼±ÅÃÀ¸·Î ÀÌµ¿");
+			// ì„ íƒì°½ ë””ìŠ¤í”Œë ˆì´
+			System.out.println("<ì—°ì²´ë£Œ ê´€ë¦¬>");
+			System.out.println("1. ì´ ì—°ì²´ë£Œ ì¡°íšŒ"); 
+			System.out.println("2. íšŒì›ë³„ ì—°ì²´ë£Œ ì´ë ¥ ì¡°íšŒ"); 
+			System.out.println("3. ë„ì„œë³„ ì—°ì²´ë£Œ ì´ë ¥ ì¡°íšŒ"); 
+			System.out.println("4. ê±°ìŠ¤ë¦„ëˆ ì¡°íšŒ ë° ì…ì¶œê¸ˆ"); 
+			System.out.println("0. ê´€ë¦¬ì ì„œë¹„ìŠ¤ ì„ íƒìœ¼ë¡œ ì´ë™");
 		
-			// ¸í·É¾î ÀÔ·Â¹Ş±â
+			// ëª…ë ¹ì–´ ì…ë ¥ë°›ê¸°
 			do
 			{	
 				System.out.print(">> ");
 				con = br.readLine();
 
 				if (!(Integer.parseInt(con) >= 0 && Integer.parseInt(con) <= 4) )
-					System.out.println("Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+					System.out.println("ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 			}
 			while (!(Integer.parseInt(con) >= 0 && Integer.parseInt(con) <= 4) );
 
-			// ½ÇÇà
+			// ì‹¤í–‰
 			System.out.println(); 
 
 			switch(con)
 			{
-				case "1" : printAllLateFee();		break;	// ÃÑ ¿¬Ã¼·á Á¶È¸
-				case "2" : printMemLateFee();		break;	// È¸¿øº° ¿¬Ã¼·á ÀÌ·Â Á¶È¸
-				case "3" : printBookLateFee();		break;	// µµ¼­º° ¿¬Ã¼·á ÀÌ·Â Á¶È¸
-				case "4" : manageMoney();			break;	// °Å½º¸§µ· Á¶È¸ ¹× ÀÔÃâ±İ
+				case "1" : printAllLateFee();		break;	// ì´ ì—°ì²´ë£Œ ì¡°íšŒ
+				case "2" : printMemLateFee();		break;	// íšŒì›ë³„ ì—°ì²´ë£Œ ì´ë ¥ ì¡°íšŒ
+				case "3" : printBookLateFee();		break;	// ë„ì„œë³„ ì—°ì²´ë£Œ ì´ë ¥ ì¡°íšŒ
+				case "4" : manageMoney();			break;	// ê±°ìŠ¤ë¦„ëˆ ì¡°íšŒ ë° ì…ì¶œê¸ˆ
 			}
 		}
 		while ( !con.equals("0") );
 		
 	}
 
-	// 4-1. ÃÑ ¿¬Ã¼·á Á¶È¸
+	// 4-1. ì´ ì—°ì²´ë£Œ ì¡°íšŒ
 	static void printAllLateFee()
 	{
-		// ¨ç rentList ¸¦ ÀüºÎ Ã¼Å©ÇÏ¸é¼­
-		// ¨è ¹İ³³ O ÀÚ·á : ÃÑ ¿¬Ã¼·á¿¡ ´©ÀûÇÕ
-		// ¨é ¹İ³³ X ÀÚ·á : ¹Ì³³¿¬Ã¼·á¿¡ ´©ÀûÇÕ
-		// ¡Ø ¹İ³³¿©ºÎ: rentInfo ÀÇ returnBook ¡æ true: ¹İ³³¿Ï·á, false: ´ëÃâ Áß
+		// â‘  rentList ë¥¼ ì „ë¶€ ì²´í¬í•˜ë©´ì„œ
+		// â‘¡ ë°˜ë‚© O ìë£Œ : ì´ ì—°ì²´ë£Œì— ëˆ„ì í•©
+		// â‘¢ ë°˜ë‚© X ìë£Œ : ë¯¸ë‚©ì—°ì²´ë£Œì— ëˆ„ì í•©
+		// â€» ë°˜ë‚©ì—¬ë¶€: rentInfo ì˜ returnBook â†’ true: ë°˜ë‚©ì™„ë£Œ, false: ëŒ€ì¶œ ì¤‘
 
-		int tot1 = 0; //-- ÃÑ ¿¬Ã¼·á 
-		int tot2 = 0; //-- ¹Ì³³¿¬Ã¼·á 
+		int tot1 = 0; //-- ì´ ì—°ì²´ë£Œ 
+		int tot2 = 0; //-- ë¯¸ë‚©ì—°ì²´ë£Œ 
 
-		for (int idx=0; idx<Library.rentList.size(); idx++)	// ¨ç
+		for (int idx=0; idx<Library.rentList.size(); idx++)	// â‘ 
 		{
-			RentalInfo r = Library.rentList.get(idx);	//-- ÀÌ¹ø¿¡ ¹Ş¾Æ¿Â ´ëÃâ Á¤º¸
+			RentalInfo r = Library.rentList.get(idx);	//-- ì´ë²ˆì— ë°›ì•„ì˜¨ ëŒ€ì¶œ ì •ë³´
 							
-			if (r.isReturnBook())	// ¨è
+			if (r.isReturnBook())	// â‘¡
 				tot1 += r.getLateFee();
 			else
 				tot2 += calLateFee(r);
 		}
 
-		// Ãâ·Â
-		System.out.println("<ÃÑ ¿¬Ã¼·á Á¶È¸>");
-		System.out.printf("ÃÑ ¿¬Ã¼·á   : %,d¿ø\n", tot1);
-		System.out.printf("¹Ì³³ ¿¬Ã¼·á : %,d¿ø\n", tot2);
+		// ì¶œë ¥
+		System.out.println("<ì´ ì—°ì²´ë£Œ ì¡°íšŒ>");
+		System.out.printf("ì´ ì—°ì²´ë£Œ   : %,dì›\n", tot1);
+		System.out.printf("ë¯¸ë‚© ì—°ì²´ë£Œ : %,dì›\n", tot2);
 		System.out.println();
 	}
 
-	// 4-2. È¸¿øº° ¿¬Ã¼·á ÀÌ·Â Á¶È¸
+	// 4-2. íšŒì›ë³„ ì—°ì²´ë£Œ ì´ë ¥ ì¡°íšŒ
 	static void printMemLateFee()
 	{
-		// ¨ç memList ¸¦ ÀüÃ¼ Ã¼Å©ÇÏ¸é¼­
-		// ¨è calLateFee() ¸Ş¼Òµå·Î, ³³ºÎ/¹Ì³³ Ãâ·Â
+		// â‘  memList ë¥¼ ì „ì²´ ì²´í¬í•˜ë©´ì„œ
+		// â‘¡ calLateFee() ë©”ì†Œë“œë¡œ, ë‚©ë¶€/ë¯¸ë‚© ì¶œë ¥
 
-		System.out.println("<È¸¿øº° ¿¬Ã¼·á Á¶È¸>");
-		System.out.printf("%10s \t%5s \t%6s \t%6s\n", "È¸¿øID", "ÀÌ¸§", "³³ºÎ ¿¬Ã¼·á", "¹Ì³³ ¿¬Ã¼·á");
+		System.out.println("<íšŒì›ë³„ ì—°ì²´ë£Œ ì¡°íšŒ>");
+		System.out.printf("%10s \t%5s \t%6s \t%6s\n", "íšŒì›ID", "ì´ë¦„", "ë‚©ë¶€ ì—°ì²´ë£Œ", "ë¯¸ë‚© ì—°ì²´ë£Œ");
 		System.out.println("==================================================================");
 
 
-		Enumeration e = Library.memList.keys();	// Å°°ª ¾ò¾î¿À±â
+		Enumeration e = Library.memList.keys();	// í‚¤ê°’ ì–»ì–´ì˜¤ê¸°
   
-		while(e.hasMoreElements())	// ¨ç
+		while(e.hasMoreElements())	// â‘ 
 		{
 			String id = (String)e.nextElement();
 			Members m = Library.memList.get(id);
@@ -727,20 +727,20 @@ class AdSystem extends LibCommon
 		System.out.println();
 	}
 
-	// 4-3. µµ¼­º° ¿¬Ã¼·á ÀÌ·Â Á¶È¸
+	// 4-3. ë„ì„œë³„ ì—°ì²´ë£Œ ì´ë ¥ ì¡°íšŒ
 	static void printBookLateFee()
 	{
-		// ¨ç bookList ¸¦ ÀüÃ¼ Ã¼Å©ÇÏ¸é¼­
-		// ¨è calLateFee() ¸Ş¼Òµå·Î, ³³ºÎ/¹Ì³³ Ãâ·Â
+		// â‘  bookList ë¥¼ ì „ì²´ ì²´í¬í•˜ë©´ì„œ
+		// â‘¡ calLateFee() ë©”ì†Œë“œë¡œ, ë‚©ë¶€/ë¯¸ë‚© ì¶œë ¥
 
-		System.out.println("<µµ¼­º° ¿¬Ã¼·á Á¶È¸>");
-		System.out.printf("%10s \t%5s \t%6s \t%6s\n", "µµ¼­¸í", "ÀúÀÚ", "³³ºÎ ¿¬Ã¼·á", "¹Ì³³ ¿¬Ã¼·á");
+		System.out.println("<ë„ì„œë³„ ì—°ì²´ë£Œ ì¡°íšŒ>");
+		System.out.printf("%10s \t%5s \t%6s \t%6s\n", "ë„ì„œëª…", "ì €ì", "ë‚©ë¶€ ì—°ì²´ë£Œ", "ë¯¸ë‚© ì—°ì²´ë£Œ");
 		System.out.println("==================================================================");
 
 
-		Enumeration e = Library.bookList.keys();	// Å°°ª ¾ò¾î¿À±â
+		Enumeration e = Library.bookList.keys();	// í‚¤ê°’ ì–»ì–´ì˜¤ê¸°
   
-		while(e.hasMoreElements())	// ¨ç
+		while(e.hasMoreElements())	// â‘ 
 		{
 			String key = (String)e.nextElement();
 			Books m = Library.bookList.get(key);
@@ -752,43 +752,43 @@ class AdSystem extends LibCommon
 	}
 
 	
-	// 4-4. °Å½º¸§µ· Á¶È¸ ¹× ÀÔÃâ±İ
+	// 4-4. ê±°ìŠ¤ë¦„ëˆ ì¡°íšŒ ë° ì…ì¶œê¸ˆ
 	static void manageMoney() throws IOException
 	{
 		do
 		{
-			// ¡Û°Å½º¸§µ· Á¶È¸
-			System.out.println("<°Å½º¸§µ· Á¶È¸ ¹× ÀÔÃâ±İ>");
-			System.out.printf("ÇöÀç °Å½º¸§µ·Àº %,d¿ø ÀÖ½À´Ï´Ù.\n\n", moneyTot(Library.money));
+			// â—‹ê±°ìŠ¤ë¦„ëˆ ì¡°íšŒ
+			System.out.println("<ê±°ìŠ¤ë¦„ëˆ ì¡°íšŒ ë° ì…ì¶œê¸ˆ>");
+			System.out.printf("í˜„ì¬ ê±°ìŠ¤ë¦„ëˆì€ %,dì› ìˆìŠµë‹ˆë‹¤.\n\n", moneyTot(Library.money));
 			
-			// money ¹è¿­: ¼ø¼­´ë·Î 1¸¸¿ø, 5Ãµ¿ø, 1Ãµ¿ø, 5¹é¿ø, 1¹é¿ø ÀÇ °¹¼ö
-			System.out.printf("10,000¿ø: %dÀå\n", Library.money[0]);
-			System.out.printf("5,000¿ø: %dÀå\n", Library.money[1]);
-			System.out.printf("1,000¿ø: %dÀå\n", Library.money[2]);
-			System.out.printf("500¿ø: %d°³\n", Library.money[3]);
-			System.out.printf("100¿ø: %d°³\n", Library.money[4]);
+			// money ë°°ì—´: ìˆœì„œëŒ€ë¡œ 1ë§Œì›, 5ì²œì›, 1ì²œì›, 5ë°±ì›, 1ë°±ì› ì˜ ê°¯ìˆ˜
+			System.out.printf("10,000ì›: %dì¥\n", Library.money[0]);
+			System.out.printf("5,000ì›: %dì¥\n", Library.money[1]);
+			System.out.printf("1,000ì›: %dì¥\n", Library.money[2]);
+			System.out.printf("500ì›: %dê°œ\n", Library.money[3]);
+			System.out.printf("100ì›: %dê°œ\n", Library.money[4]);
 			System.out.println("");
 
 			
-			// ¡Û ¸Ş´º ¼±ÅÃÃ¢
-			System.out.println("1. °Å½º¸§µ· ÀÔ±İ");
-			System.out.println("2. °Å½º¸§µ· Ãâ±İ");
-			System.out.println("3. ¸Ş´º·Î");
+			// â—‹ ë©”ë‰´ ì„ íƒì°½
+			System.out.println("1. ê±°ìŠ¤ë¦„ëˆ ì…ê¸ˆ");
+			System.out.println("2. ê±°ìŠ¤ë¦„ëˆ ì¶œê¸ˆ");
+			System.out.println("3. ë©”ë‰´ë¡œ");
 
 
-			// ¡Û ¼±ÅÃ ÀÔ·Â ¹Ş±â
+			// â—‹ ì„ íƒ ì…ë ¥ ë°›ê¸°
 			do
 			{	
 				System.out.print(">> ");
 				con = br.readLine();
 
 				if (!(Integer.parseInt(con) >= 1 && Integer.parseInt(con) <= 3))
-					System.out.println("Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+					System.out.println("ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 			}
 			while (!(Integer.parseInt(con) >= 1 && Integer.parseInt(con) <= 3));
 			
 			
-			// ¡Û ½ÇÇà
+			// â—‹ ì‹¤í–‰
 			switch (con)
 			{
 				case "1" : inputMoney();	break;
@@ -800,27 +800,27 @@ class AdSystem extends LibCommon
 
 	}
 
-	// ÀÔ±İ
+	// ì…ê¸ˆ
 	static void inputMoney() throws IOException
 	{
 		System.out.println();
-		System.out.println("<°Å½º¸§µ· ÀÔ±İ>");
-		System.out.println("ÀÔ±İÇÒ ±İ¾×À» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+		System.out.println("<ê±°ìŠ¤ë¦„ëˆ ì…ê¸ˆ>");
+		System.out.println("ì…ê¸ˆí•  ê¸ˆì•¡ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 		System.out.println();
 
-		// ÀÔ·Â ¹ŞÀº ÀÔ±İ ±İ¾×À» ÀúÀåÇÑ ¹è¿­
+		// ì…ë ¥ ë°›ì€ ì…ê¸ˆ ê¸ˆì•¡ì„ ì €ì¥í•œ ë°°ì—´
 		int[] m = writeMoney();
 
 
-		// ÀÔ±İ È®ÀÎ
-		System.out.println("ÀÔ±İÇÏ½Ã°Ú½À´Ï±î? (Y/N)");
+		// ì…ê¸ˆ í™•ì¸
+		System.out.println("ì…ê¸ˆí•˜ì‹œê² ìŠµë‹ˆê¹Œ? (Y/N)");
 		do
 		{
 			System.out.print(">> ");
 			con = br.readLine().toUpperCase();
 
 			if (!(con.equals("Y") || con.equals("N")))
-				System.out.println("Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+				System.out.println("ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 		}
 		while (!(con.equals("Y") || con.equals("N")));
 
@@ -830,35 +830,35 @@ class AdSystem extends LibCommon
 			for (int i=0; i<Library.money.length; i++)
 				Library.money[i] += m[i];
 
-			System.out.println("ÀÔ±İÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+			System.out.println("ì…ê¸ˆì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 		}
 		else
-			System.out.println("ÀÔ±İÀÌ Ãë¼ÒµÇ¾ú½À´Ï´Ù.");
+			System.out.println("ì…ê¸ˆì´ ì·¨ì†Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 
 		System.out.println();
 	}
 	
-	// Ãâ±İ
+	// ì¶œê¸ˆ
 	static void outputMoney() throws IOException
 	{
 		System.out.println();
-		System.out.println("<°Å½º¸§µ· Ãâ±İ>");
-		System.out.println("Ãâ±İÇÒ ±İ¾×À» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+		System.out.println("<ê±°ìŠ¤ë¦„ëˆ ì¶œê¸ˆ>");
+		System.out.println("ì¶œê¸ˆí•  ê¸ˆì•¡ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 		System.out.println();
 
-		// ÀÔ·Â ¹ŞÀº Ãâ±İ ±İ¾×À» ÀúÀåÇÑ ¹è¿­
+		// ì…ë ¥ ë°›ì€ ì¶œê¸ˆ ê¸ˆì•¡ì„ ì €ì¥í•œ ë°°ì—´
 		int[] m = writeMoney();
 
 
-		// Ãâ±İ È®ÀÎ
-		System.out.println("Ãâ±İÇÏ½Ã°Ú½À´Ï±î? (Y/N)");
+		// ì¶œê¸ˆ í™•ì¸
+		System.out.println("ì¶œê¸ˆí•˜ì‹œê² ìŠµë‹ˆê¹Œ? (Y/N)");
 		do
 		{
 			System.out.print(">> ");
 			con = br.readLine().toUpperCase();
 
 			if (!(con.equals("Y") || con.equals("N")))
-				System.out.println("Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+				System.out.println("ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 		}
 		while (!(con.equals("Y") || con.equals("N")));
 
@@ -866,55 +866,55 @@ class AdSystem extends LibCommon
 
 		if ((con.equals("Y")))
 		{
-			boolean flag = true;	//-- °Å½º¸§µ·ÀÌ Ãâ±İÇÒ ¸¸Å­ ÀÖ´ÂÁö È®ÀÎÇÏ´Â º¯¼ö
-									//	 (true: ÀÖÀ½, false: ¾øÀ½)
+			boolean flag = true;	//-- ê±°ìŠ¤ë¦„ëˆì´ ì¶œê¸ˆí•  ë§Œí¼ ìˆëŠ”ì§€ í™•ì¸í•˜ëŠ” ë³€ìˆ˜
+									//	 (true: ìˆìŒ, false: ì—†ìŒ)
 	
-			// ¸ğµç µ·ÀÌ ÀÖ´Ù´Â °É È®ÀÎÇÑ ÈÄ, ÀÏ°ıÀûÀ¸·Î Ãâ±İÇØ¾ß ÇÑ´Ù.
-			// ¡Û ÀÜµ· È®ÀÎ
+			// ëª¨ë“  ëˆì´ ìˆë‹¤ëŠ” ê±¸ í™•ì¸í•œ í›„, ì¼ê´„ì ìœ¼ë¡œ ì¶œê¸ˆí•´ì•¼ í•œë‹¤.
+			// â—‹ ì”ëˆ í™•ì¸
 			for (int i=0; i<Library.money.length; i++)
 			{
 				if (Library.money[i] < m[i])
 				{
 					flag = false;
-					System.out.println("[Ãâ±İ ½ÇÆĞ]");
-					System.out.println("°Å½º¸§µ·ÀÌ ¸ğÀÚ¶ø´Ï´Ù.");
+					System.out.println("[ì¶œê¸ˆ ì‹¤íŒ¨]");
+					System.out.println("ê±°ìŠ¤ë¦„ëˆì´ ëª¨ìëë‹ˆë‹¤.");
 					break;
 				}				
 			}
 
-			// ¡Û ÀÜµ· Ãâ±İ
+			// â—‹ ì”ëˆ ì¶œê¸ˆ
 			if (flag)
 			{
 				for (int i=0; i<Library.money.length; i++)
 					Library.money[i] -= m[i];
-				System.out.println("Ãâ±İÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+				System.out.println("ì¶œê¸ˆì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 			}
 		}
 		else
-			System.out.println("Ãâ±İÀÌ Ãë¼ÒµÇ¾ú½À´Ï´Ù.");
+			System.out.println("ì¶œê¸ˆì´ ì·¨ì†Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 
 		System.out.println();
 	}
 
-	// µ·ÀÇ °¹¼ö¸¦ ÀÔ·Â ¹Ş¾Æ¼­ ¹İÈ¯ÇÏ´Â ¹è¿­
+	// ëˆì˜ ê°¯ìˆ˜ë¥¼ ì…ë ¥ ë°›ì•„ì„œ ë°˜í™˜í•˜ëŠ” ë°°ì—´
 	static int[] writeMoney() throws IOException
 	{
-		int[] m = new int[5];	//-- ÀÔÃâ±İÇÒ µ·ÀÇ °¹¼ö¸¦ ÀÔ·Â¹ŞÀ» ¹è¿­
-								//  : ¼ø¼­´ë·Î 1¸¸¿ø, 5Ãµ¿ø, 1Ãµ¿ø, 5¹é¿ø, 1¹é¿ø ÀÇ °¹¼ö
+		int[] m = new int[5];	//-- ì…ì¶œê¸ˆí•  ëˆì˜ ê°¯ìˆ˜ë¥¼ ì…ë ¥ë°›ì„ ë°°ì—´
+								//  : ìˆœì„œëŒ€ë¡œ 1ë§Œì›, 5ì²œì›, 1ì²œì›, 5ë°±ì›, 1ë°±ì› ì˜ ê°¯ìˆ˜
 		
-		System.out.print("10,000¿ø: ");
+		System.out.print("10,000ì›: ");
 		m[0] = Integer.parseInt(br.readLine());
-		System.out.print("5,000¿ø: ");
+		System.out.print("5,000ì›: ");
 		m[1] = Integer.parseInt(br.readLine());
-		System.out.print("1,000¿ø: ");
+		System.out.print("1,000ì›: ");
 		m[2] = Integer.parseInt(br.readLine());
-		System.out.print("500¿ø: ");
+		System.out.print("500ì›: ");
 		m[3] = Integer.parseInt(br.readLine());
-		System.out.print("100¿ø: ");
+		System.out.print("100ì›: ");
 		m[4] = Integer.parseInt(br.readLine());
 		System.out.println();
 
-		System.out.printf("ÃÑ¾×: %,d¿ø\n", moneyTot(m));
+		System.out.printf("ì´ì•¡: %,dì›\n", moneyTot(m));
 		
 		return m;
 	}
@@ -922,18 +922,18 @@ class AdSystem extends LibCommon
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-	// 5. ÀÌ¿ëÀÚ¸ğµå
+	// 5. ì´ìš©ìëª¨ë“œ
 	static void userOn() throws IOException
 	{
-		System.out.println("\n===ÀÌ¿ëÀÚ ¸ğµå ½ÃÀÛ===");
+		System.out.println("\n===ì´ìš©ì ëª¨ë“œ ì‹œì‘===");
 		UserSystem.onSystem();	
 	}
 	
 
-	// 6. ÇÁ·Î±×·¥ Á¾·á
+	// 6. í”„ë¡œê·¸ë¨ ì¢…ë£Œ
 	static void exit()
 	{
-		System.out.println("ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.");
+		System.out.println("í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.");
 		System.exit(-1);			
 	}
 }
