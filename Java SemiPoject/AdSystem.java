@@ -204,47 +204,47 @@ class AdSystem extends LibCommon
 	 Enumeration e = Library.bookList.keys();         //e에 bookList 키들
 
 	 if(Library.bookList.get(title).isRental()){         //대출가능여부
-	    System.out.printf("%s 은/는 대출 가능합니다.\n",title);
-	    selectSearchMenu();
+		System.out.printf("%s 은/는 대출 가능합니다.\n",title);
+		selectSearchMenu();
 	 }else{
-	    for(int i=Library.rentList.size()-1; i>0; i--){
-	       RentalInfo valR = Library.rentList.get(i);
+		for(int i=Library.rentList.size()-1; i>0; i--){
+		   RentalInfo valR = Library.rentList.get(i);
 
-	       if(valR.getRBook().equals(title)){         //rentlist에 그 책이 존재할 때
-		  System.out.printf("%s 은/는 현재 대출중입니다.", title);
-		  System.out.printf("\n▶이용자 : %s", valR.getRMem());
+		   if(valR.getRBook().equals(title)){         //rentlist에 그 책이 존재할 때
+			  System.out.printf("%s 은/는 현재 대출중입니다.", title);
+			  System.out.printf("\n▶이용자 : %s", valR.getRMem());
+				 
+			  // ○ 반납 예정일 계산                  
+			  Calendar cal = new GregorianCalendar();         //-- 반납 예정일을 담을 변수 선언
 
-		  // ○ 반납 예정일 계산                  
-		  Calendar cal = new GregorianCalendar();         //-- 반납 예정일을 담을 변수 선언
+			  int y = valR.getRentalDate().get(Calendar.YEAR);
+			  int m = valR.getRentalDate().get(Calendar.MONTH);
+			  int d = valR.getRentalDate().get(Calendar.DATE);
+			  cal.set(y,m,d);                           // 대출한 날짜 셋팅   
+			  cal.add(Calendar.DATE, Library.RENT_DAYS);      // 대출한 날짜 + 대출기한 = 반납 예정일
+												  // Library.RENT_DAYS: final 변수로 선언한 대출기한
 
-		  int y = valR.getRentalDate().get(Calendar.YEAR);
-		  int m = valR.getRentalDate().get(Calendar.MONTH);
-		  int d = valR.getRentalDate().get(Calendar.DATE);
-		  cal.set(y,m,d);                           // 대출한 날짜 셋팅   
-		  cal.add(Calendar.DATE, Library.RENT_DAYS);      // 대출한 날짜 + 대출기한 = 반납 예정일
-						      // Library.RENT_DAYS: final 변수로 선언한 대출기한
+			  // ----------- 반납 예정일 계산 완료!
+				
 
-		  // ----------- 반납 예정일 계산 완료!
+			  // ○ 남은 반납 기한 계산
+			  Calendar today = new GregorianCalendar();      //-- 오늘                  
+			  long sec = (cal.getTimeInMillis() - today.getTimeInMillis())/ 1000;   // '반납예정일(미래) - 오늘' 의 초
 
-
-		  // ○ 남은 반납 기한 계산
-		  Calendar today = new GregorianCalendar();      //-- 오늘                  
-		  long sec = (cal.getTimeInMillis() - today.getTimeInMillis())/ 1000;   // '반납예정일(미래) - 오늘' 의 초
-
-		  // 입고날짜와 현재날짜의 차이를 일 단위로 변환
-		  // ※ 1일 = 24(시간) * 60(분) * 60(초)
-		  //     따라서, sec 값에서 24*60*60 한 값을 나누면 초 에서 일로 변환 가능
-		  long days = sec / (24*60*60);
-
-		  // ○ 출력
-		  if(days>=0)
-		     System.out.printf("\n▶남은 반납 기한 : %d일\n", days); 
-		  else
-		     System.out.printf("\n▶%d일 째, 연체 중\n", Math.abs(days));   //절댓값으로 연체 중인 날짜 계산
-
-		  return;
-	       }
-	    }
+			  // 입고날짜와 현재날짜의 차이를 일 단위로 변환
+			  // ※ 1일 = 24(시간) * 60(분) * 60(초)
+			  //     따라서, sec 값에서 24*60*60 한 값을 나누면 초 에서 일로 변환 가능
+			  long days = sec / (24*60*60);
+	 
+			  // ○ 출력
+			  if(days>=0)
+				 System.out.printf("\n▶남은 반납 기한 : %d일\n", days); 
+			  else
+				 System.out.printf("\n▶%d일 째, 연체 중\n", Math.abs(days));   //절댓값으로 연체 중인 날짜 계산
+			  
+			  return;
+		   }
+		}
 	 }
 	}else
 	 System.out.printf("\n%s 은/는 존재하지 않는 도서입니다.\n", title);  
