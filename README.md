@@ -1,5 +1,6 @@
 # Java-Semi-Project-Vending-Machine
 2021년 8월 17일(화) ~ 2021년 8월 23일(월) 쌍용강북교육센터 1조 -  Vending Machine Team Project with KIOSK <br> (팀장:정미화 / 팀원:권순모, 김진희, 정가연, 정효진, 최수지)
+
 ## ◼ 도서관 키오스크
 - DB를 이용하지 않고 java만으로 만든 키오스크 기반 공공 도서관 키오스크. 총 8개의 클래스로 구성되어 있으며, 메인클래스는 Library 클래스이다. 또한 class AdSystem과 class UserSystem은 LibCommon을 상속는 형식으로 구성하였다.
 - 최종 PPT : https://docs.google.com/presentation/d/1rtaBnF2-7qCtAIKCf0_vQkQqSqIxqnSPh1HOwnRjH90/edit#slide=id.geafaefe589_1_12
@@ -24,3 +25,5 @@
 7. 신규 입고 도서 목록
 8. 로그아웃
 
+## ◼ 피드백 및 회의록
+📝 https://oasis-emperor-d40.notion.site/1-4123ac39f1ea4a7995aca5734fe77b7e
