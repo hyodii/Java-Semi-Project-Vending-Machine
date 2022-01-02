@@ -26,4 +26,4 @@
 8. 로그아웃
 
 ## ◼ 피드백 및 회의록
-📝 https://oasis-emperor-d40.notion.site/1-4123ac39f1ea4a7995aca5734fe77b7e
+📝 https://hyodii9736.notion.site/1-fe664608b62c40fc97b525a5e5f23920
